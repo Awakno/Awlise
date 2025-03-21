@@ -1,4 +1,6 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools", "wheel", "dotenv", "pydantic"]
 build-backend = "setuptools.build_meta"
-version = "1.0.0
+
+[project]
+version = "1.0.0"
