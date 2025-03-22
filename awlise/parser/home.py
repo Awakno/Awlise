@@ -32,11 +32,11 @@ def _html_home_parser(html: str) -> dict:
         balance_tag = label.find("b")
         try:
             if balance_tag and balance_tag.text:
-                user_data["balance"] = float(balance_tag.text.replace(" ", "").replace("€", "").replace(",", "."))
+                user_data["balance"] = (float(balance_tag.text.replace(",", ".").replace("€", "")), balance_tag.text[-2])
             else:
-                user_data["balance"] = 0.0
+                user_data["balance"] = (0.0, "€")
         except ValueError:
-            user_data["balance"] = 0.0  # Default to 0.0 if parsing fails
+            user_data["balance"] = (0.0,"€")  # Default to 0.0 if parsing fails
 
     # Extracting child information
     select = soup.find("select", class_="eleve")

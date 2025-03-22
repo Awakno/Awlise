@@ -18,5 +18,5 @@ class Home(pydantic.BaseModel):
     responsable_first_name: str = None
     responsable_last_name: str = None
     adress: str = None
-    balance: float = None
+    balance: tuple[float, str] = None
     childs: ChildProps = None
