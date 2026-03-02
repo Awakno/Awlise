@@ -9,3 +9,4 @@ class Booking(pydantic.BaseModel):
     cancelable: bool = False
     link: str = None
     date: str = None
+    identifier: str = None

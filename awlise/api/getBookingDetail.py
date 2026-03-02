@@ -31,3 +31,24 @@ async def getBookingDetailByDateISO8601(session: Session, date: str) -> Booking 
             return booking
 
     return None
+
+
+async def getBookingDetail(session: Session, identifier: str) -> Booking | None:
+    """
+    Retrieves the booking details for a specific identifier.
+
+    :param session: The user session.
+    :param identifier: The booking identifier.
+    :return: A Booking object or None if no booking is found.
+    :raises ValueError: If the identifier is empty.
+    """
+    identifier = identifier.strip()
+    if not identifier:
+        raise ValueError("Identifier cannot be empty.")
+
+    try:
+        bookings = await getBookings(session)
+    except Exception as e:
+        raise BookingDetailError(f"Error retrieving bookings: {e}")
+
+    return next((booking for booking in bookings if booking.identifier and booking.identifier.strip() == identifier), None)

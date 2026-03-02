@@ -1,14 +1,19 @@
-from setuptools import setup, find_packages
+from pathlib import Path
+
+from setuptools import find_packages, setup
+
+
+README_PATH = Path(__file__).parent / "README.md"
 
 setup(
     name="awlise",
-    version="0.1.0",
-    author="LiterateInk",
-    author_email="contact@literate.ink",
+    version="1.0.0",
+    author="Awakno",
+    author_email="contact@awakno.fr",
     description="An awmazing API wrapper for Alise.",
-    long_description=open("README.md").read(),
+    long_description=README_PATH.read_text(encoding="utf-8"),
     long_description_content_type="text/markdown",
-    url="https://github.com/LiterateInk/Awlise",
+    url="https://github.com/Awakno/Awlise",
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -19,6 +24,7 @@ setup(
     install_requires=[
         "aiohttp",
         "beautifulsoup4",
+        "pydantic",
     ],
     include_package_data=True,
 )

@@ -24,6 +24,7 @@ def _html_booking_parser(html: str) -> list:
                     "cancelable": True,
                     "link": booking_link["href"],
                     "date": date_id,
+                    "identifier": booking_link["href"].split("date=")[1]
                 })
             else:
                 # Check if the cell is marked as non-reservable

@@ -1,3 +1,4 @@
+from typing import Any
 from urllib.parse import urljoin
 
 
@@ -7,23 +8,26 @@ class RequestError(Exception):
 
 
 class Request:
-    def __init__(self, path: str):
+    def __init__(self, path: str, method: str = "GET"):
         self.base_url = "https://webparent.paiementdp.com/"
         self.url = urljoin(self.base_url, path)
-        self.headers = {}
-        self.cookies = {}
-        self.method = "GET"
-        self.data = None
+        self.headers: dict[str, str] = {}
+        self.cookies: dict[str, str] = {}
+        self.method = method
+        self.data: str | None = None
 
     def set_form_data(self, data: str):
         self.method = "POST"
         self.data = data
         self.headers["Content-Type"] = "application/x-www-form-urlencoded"
 
+    def set_headers(self, headers: dict[str, str]):
+        self.headers = headers
+
     def set_session(self, session_id: str):
         self.cookies["PHPSESSID"] = session_id
 
-    async def send(self, fetcher):
+    async def send(self, fetcher: dict[str, Any]):
         """
         Sends the request using the provided fetcher function.
 
