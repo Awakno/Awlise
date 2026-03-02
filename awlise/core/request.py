@@ -4,6 +4,7 @@ from urllib.parse import urljoin
 
 class RequestError(Exception):
     """Custom exception for request errors."""
+
     pass
 
 
